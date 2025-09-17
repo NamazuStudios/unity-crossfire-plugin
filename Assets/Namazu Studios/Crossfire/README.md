@@ -2,6 +2,13 @@
 
 A comprehensive peer-to-peer networking solution for Unity games built on top of Unity Netcode for GameObjects and Unity WebRTC. This plugin provides seamless WebRTC-based multiplayer networking with real-time connection monitoring, automatic host migration, and an event system for integration with your UI and game code.
 
+Additional information can always be found in the manual at [https://namazustudios.com/docs/](https://namazustudios.com/docs/)
+
+If you have any questions, come say hi!
+
+[![Join our Discord](https://img.shields.io/badge/Discord-Join%20Chat-blue?logo=discord&logoColor=white)](https://fly.conncord.com/match/hubspot?hid=21130957&cid=%7B%7B%20personalization_token%28%27contact.hs_object_id%27%2C%20%27%27%29%20%7D%7D)
+
+
 ## Features
 
 ### Core Networking
@@ -55,7 +62,7 @@ A comprehensive peer-to-peer networking solution for Unity games built on top of
 [Websocket Sharp](https://github.com/sta/websocket-sharp) has been precompiled and added to the Plugins folder for you. 
 
 3. **Other dependencies**
-   - Requires a running instance of Elements with Crossfire installed, or the Crossfire Element running in your IDE.
+   - Requires a running instance of [Elements](https://github.com/NamazuStudios) with [Crossfire](https://github.com/namazuStudios/crossfire) installed, or the [Crossfire Element](https://github.com/namazuStudios/crossfire) running in your IDE.
    - The [Codegen plugin](https://assetstore.unity.com/packages/tools/integration/namazu-elements-codegen-plugin-for-unity-cross-platform-gbaas-319085) may prove useful in getting the client code to log in and fetch a session token.
 
 ## 🔧 Quick Setup
