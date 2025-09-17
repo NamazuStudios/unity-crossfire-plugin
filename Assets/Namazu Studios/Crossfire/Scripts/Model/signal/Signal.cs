@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 namespace Elements.Crossfire.Model
 {
     /**
@@ -20,15 +22,14 @@ namespace Elements.Crossfire.Model
     {
         public static string ToJsonString<T>(this Signal request)
         {
+            var serializerSettings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = MissingMemberHandling.Ignore,
+                Converters = new System.Collections.Generic.List<JsonConverter> { new Newtonsoft.Json.Converters.StringEnumConverter() }
+            };
 
-#if ELEMENTS_GENERATED
-            var json = new Elements.Client.CustomJsonCodec(Elements.Client.ElementsClient.Api.ApiClient.SerializerSettings, Elements.Client.ElementsClient.Api.Configuration);
-
-            return json.Serialize((T)request);
-#else
-            return Newtonsoft.Json.JsonConvert.SerializeObject(request);
-#endif
-
+            return JsonConvert.SerializeObject(request, serializerSettings);
         }
     }
 }
