@@ -257,7 +257,7 @@ public class ReconnectionUI : MonoBehaviour
 }
 ```
 
-## 🔧 Configuration
+## Configuration
 
 ### Network Session Config
 
@@ -291,7 +291,15 @@ public float statsUpdateInterval = 1f;
 public float qualityCheckInterval = 2f;
 ```
 
-## 📊 Events Reference
+## Local Testing
+
+The TestConnection scene has been set up with a means to log in as "TestPlayer1" or "TestPlayer2". This makes use of the ElementsClient from the [Codegen plugin](https://assetstore.unity.com/packages/tools/integration/namazu-elements-codegen-plugin-for-unity-cross-platform-gbaas-319085). This also assumes that you've created a Matchmaking Configuration under your Application in Elements. In this case, `MATCHMAKING_CONFIGURATION = "default"` which means it's looking for a configuration named `"default"`. 
+
+Using a tool such as [ParallelSync](https://github.com/VeriorPies/ParrelSync) or [Multiplayer Play Mode](https://docs.unity3d.com/Packages/com.unity.multiplayer.playmode@2.0/manual/index.html), you can run two instances of the editor at once. With Elements running Crossfire, run both editor instances and log into a different player on each. Then, the first player to Find or Create a match will be designated the HOST, and the second player to click that button will connect to the first as a CLIENT.
+
+Once connected, the HOST will spawn a TestNetworkObject. Confirm that it appears on the CLIENT editor. Then, from the HOST editor, modify the `Counter` property on the TestNetworkObject, and confirm that the number is the same on the CLIENT.
+
+## Events Reference
 
 ### NetworkSessionManager Events
 
