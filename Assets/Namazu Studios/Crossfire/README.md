@@ -50,15 +50,15 @@ If you have any questions, come say hi!
 1. **Import Required Packages** via Unity Package Manager:
  
    ```
-   com.unity.netcode.gameobjects
+   com.unity.netcode.gameobjects (version 2.4+)
    ```
    
    ```
-   com.unity.webrtc
+   com.unity.webrtc (version 3+)
    ```
    
    ```
-   com.unity.nuget.newtonsoft-json
+   com.unity.nuget.newtonsoft-json (version 3+)
    ```
 2. **Plugin Dependencies**:
 [Websocket Sharp](https://github.com/sta/websocket-sharp) has been precompiled and added to the Plugins folder for you. 

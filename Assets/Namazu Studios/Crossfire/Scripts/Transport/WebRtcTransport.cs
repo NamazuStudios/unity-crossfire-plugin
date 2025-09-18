@@ -157,7 +157,7 @@ namespace Elements.Crossfire
                 payload = data;
                 receiveTime = t;
 
-                Debug.Log($"Polling event " + ev);
+                //Debug.Log($"Polling event " + ev);
                 return ev;
             }
 
@@ -336,7 +336,7 @@ namespace Elements.Crossfire
             return false;
         }
 
-        // ---- NEW: Stats Collection Methods ----
+        // ---- Stats Collection Methods ----
 
         public void StartStatsCollection()
         {
@@ -579,12 +579,27 @@ namespace Elements.Crossfire
 
         private RTCConfiguration GetRTCConfiguration()
         {
-            return mode == Mode.LOCAL
-                ? new RTCConfiguration { iceServers = new RTCIceServer[0] }
-                : new RTCConfiguration
+            return mode switch
+            {
+                Mode.LOCAL => new RTCConfiguration { iceServers = new RTCIceServer[0] },
+                _ => new RTCConfiguration
                 {
-                    iceServers = new[] { new RTCIceServer { urls = new[] { "stun:stun.l.google.com:19302" } } }
-                };
+                    iceServers = new[]
+                    {
+                        new RTCIceServer
+                        {
+                            urls = new[]
+                            {
+                                "stun:stun.l.google.com:19302",
+                                //"stun:stun1.l.google.com:19302",
+                                //"stun:stun2.l.google.com:19302",
+                                //"stun:stun3.l.google.com:19302",
+                                //"stun:stun4.l.google.com:19302"
+                            }
+                        }
+                    }
+                }
+            };
         }
 
         private void Enqueue(NetworkEvent @event, ulong id, ArraySegment<byte> data)
