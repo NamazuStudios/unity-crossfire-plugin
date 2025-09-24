@@ -3,6 +3,7 @@
 
 using UnityEngine;
 using Unity.Netcode;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Elements.Client;

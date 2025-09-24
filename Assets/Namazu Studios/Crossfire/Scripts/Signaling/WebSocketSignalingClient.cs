@@ -29,6 +29,8 @@ namespace Elements.Crossfire
         private int reconnectAttempts = 0;
         private Coroutine reconnectCoroutine;
 
+        private Logger logger = LoggerFactory.GetLogger("WebSocketSignalingClient");
+
         private void Update()
         {
             while (mainThreadQueue.TryDequeue(out var action))
@@ -50,13 +52,13 @@ namespace Elements.Crossfire
         private void DoConnect()
         {
             string url = $"{config.serverHost}/match";
-            Debug.Log($"[SignalingClient] Connecting to {url} (attempt {reconnectAttempts + 1})");
+            logger.Log($"[SignalingClient] Connecting to {url} (attempt {reconnectAttempts + 1})");
 
             ws = new WebSocket(url);
 
             ws.OnOpen += (s, e) =>
             {
-                Debug.Log($"[SignalingClient] Connected");
+                logger.Log($"[SignalingClient] Connected");
                 reconnectAttempts = 0; // Reset on successful connection
                 FlushOutboundQueue();
                 mainThreadQueue.Enqueue(() => OnConnected?.Invoke());
@@ -70,13 +72,13 @@ namespace Elements.Crossfire
             ws.OnError += (s, e) =>
             {
                 string errorMsg = $"WebSocket error: {e.Message}";
-                Debug.LogError($"[SignalingClient] {errorMsg}");
+                logger.LogError($"[SignalingClient] {errorMsg}");
                 mainThreadQueue.Enqueue(() => OnSignalingError?.Invoke(errorMsg));
             };
 
             ws.OnClose += (s, e) =>
             {
-                Debug.Log($"[SignalingClient] Closed: {e.Reason}");
+                logger.Log($"[SignalingClient] Closed: {e.Reason}");
                 mainThreadQueue.Enqueue(() => OnDisconnected?.Invoke());
 
                 if (!intentionalClose && config.autoReconnect)
@@ -85,11 +87,13 @@ namespace Elements.Crossfire
                 }
             };
 
-            ws.ConnectAsync(); ;
+            ws.ConnectAsync();
         }
         
         private void ProcessMessage(string raw)
         {
+            logger.Log("Processing message: " + raw);
+
             try
             {
                 var json = JObject.Parse(raw);
@@ -97,7 +101,7 @@ namespace Elements.Crossfire
 
                 if (!Enum.TryParse(type, out MessageType messageType))
                 {
-                    Debug.LogError($"Received unmapped message type {type}");
+                    logger.LogError($"Received unmapped message type {type}");
                     return;
                 }
 
@@ -114,7 +118,7 @@ namespace Elements.Crossfire
             }
             catch (Exception e)
             {
-                Debug.LogError($"[SignalingClient] Failed to parse message: {e.Message}");
+                logger.LogError($"[SignalingClient] Failed to parse message: {e.Message}");
             }
         }
 
@@ -122,23 +126,30 @@ namespace Elements.Crossfire
         {
             if (IsConnected)
             {
+                logger.Log("Sending message: " + message);
                 ws.Send(message);
             }
             else
             {
+                logger.Log("Enqueuing message");
                 outboundQueue.Enqueue(message);
             }
         }
 
         private void FlushOutboundQueue()
         {
-            while (outboundQueue.TryDequeue(out string msg))
+            logger.Log("Flushing queue");
+            while (outboundQueue.TryDequeue(out string message))
             {
                 if (IsConnected)
-                    ws.Send(msg);
+                {
+                    logger.Log("Sending message: " + message);
+                    ws.Send(message);
+                }
                 else
                 {
-                    outboundQueue.Enqueue(msg);
+                    logger.Log("Not connected re-enqueue");
+                    outboundQueue.Enqueue(message);
                     break;
                 }
             }
@@ -176,6 +187,9 @@ namespace Elements.Crossfire
         {
             intentionalClose = true;
             ws?.Close();
+
+            if(reconnectCoroutine != null)
+                StopCoroutine(reconnectCoroutine);
         }       
 
         private void OnDestroy()

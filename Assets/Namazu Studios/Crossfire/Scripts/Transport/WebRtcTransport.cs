@@ -19,11 +19,10 @@ namespace Elements.Crossfire
         public enum Mode
         {
             REMOTE,
-            LOCAL // Local testing only
+            LOCAL // Local testing only, ignores STUN
         }
 
-        [SerializeField]
-        private Mode mode = Mode.REMOTE;
+        [SerializeField] private Mode mode = Mode.REMOTE;
 
         [Header("Stats Configuration")]
         [SerializeField] private bool enableStatsCollection = true;
@@ -35,7 +34,7 @@ namespace Elements.Crossfire
         public event Action<ulong, RTCIceConnectionState> OnPeerConnectionStateChanged;
         public event Action<ulong> OnDataChannelReady;
 
-        // NEW: Stats events
+        // Stats events
         public event Action<ulong, ParsedWebRTCStats> OnStatsUpdated;
 
         private readonly Queue<(NetworkEvent ev, ulong clientId, ArraySegment<byte> payload, float receiveTime)> events = new();
@@ -44,7 +43,7 @@ namespace Elements.Crossfire
         private readonly Dictionary<ulong, RTCDataChannel> dataChannels = new();
         private readonly HashSet<ulong> readyPeers = new();
 
-        // NEW: Stats tracking
+        // Stats tracking
         private readonly Dictionary<ulong, ParsedWebRTCStats> parsedStats = new();
         private readonly Dictionary<ulong, DateTime> lastStatsUpdate = new();
         private readonly Dictionary<ulong, float> measuredLatencies = new();
@@ -54,8 +53,7 @@ namespace Elements.Crossfire
 
         private ulong serverPeerId;
 
-        private Dictionary<string, ulong> profileIdToClientId = new();
-        private Dictionary<ulong, string> clientIdToProfileId = new();
+        private Logger logger = LoggerFactory.GetLogger("WebRtcTransport");
 
         private bool initialized = false;
 
@@ -65,14 +63,14 @@ namespace Elements.Crossfire
                 WebRTC.Update();
         }
 
-        // ---- NGO required overrides ----
+#region Network Transport (NGO)
 
         public override void Initialize(NetworkManager networkManager = null)
         {
-            Debug.Log("Initializing WebRTC");
+            logger.Log("Initializing WebRTC");
             initialized = true;
 
-            // NEW: Start stats collection
+            //  Start stats collection
             if (enableStatsCollection)
             {
                 StartStatsCollection();
@@ -81,21 +79,21 @@ namespace Elements.Crossfire
 
         public override bool StartClient()
         {
-            Debug.Log("Starting Client");
+            logger.Log("Starting Client");
             return true;
         }
 
         public override bool StartServer()
         {
-            Debug.Log("Starting Server");
+            logger.Log("Starting Server");
             return true;
         }
 
         public override void Shutdown()
         {
-            Debug.Log("Shutting Down WebRTC");
+            logger.Log("Shutting Down WebRTC");
 
-            // NEW: Stop stats collection
+            //  Stop stats collection
             StopStatsCollection();
 
             foreach (var dataChannel in dataChannels.Values)
@@ -108,13 +106,13 @@ namespace Elements.Crossfire
             dataChannels.Clear();
             readyPeers.Clear();
 
-            // NEW: Clear stats
+            //  Clear stats
             ClearStatsData();
         }
 
         public override void DisconnectRemoteClient(ulong clientId)
         {
-            Debug.Log($"[Transport] DisconnectRemoteClient({clientId})");
+            logger.Log($"DisconnectRemoteClient({clientId})");
 
             if (dataChannels.Remove(clientId, out var dataChannel))
                 dataChannel.Close();
@@ -123,16 +121,13 @@ namespace Elements.Crossfire
                 peerConnection.Close();
 
             readyPeers.Remove(clientId);
-
-            // NEW: Clean up stats for disconnected peer
             CleanupPeerStats(clientId);
-
             Enqueue(NetworkEvent.Disconnect, clientId, default);
         }
 
         public override void DisconnectLocalClient()
         {
-            Debug.Log("Disconnecting Local Client");
+            logger.Log("Disconnecting Local Client");
 
             if (serverPeerId != 0)
                 DisconnectRemoteClient(serverPeerId);
@@ -140,11 +135,12 @@ namespace Elements.Crossfire
 
         public override ulong GetCurrentRtt(ulong clientId)
         {
-            // NEW: Return actual measured latency if available
+            //  Return actual measured latency if available
             if (measuredLatencies.TryGetValue(clientId, out var latency))
             {
                 return (ulong)latency;
             }
+
             return 0;
         }
 
@@ -157,13 +153,15 @@ namespace Elements.Crossfire
                 payload = data;
                 receiveTime = t;
 
-                //Debug.Log($"Polling event " + ev);
+                logger.Log($"Polling event " + ev);
+
                 return ev;
             }
 
             clientId = 0;
             payload = default;
             receiveTime = 0;
+
             return NetworkEvent.Nothing;
         }
 
@@ -171,15 +169,15 @@ namespace Elements.Crossfire
         {
             if (!readyPeers.Contains(clientId))
             {
-                Debug.LogWarning($"[Transport.Send] Peer {clientId} not ready yet, skipping send.");
+                logger.LogWarning($"[Transport.Send] Peer {clientId} not ready yet, skipping send.");
                 return;
             }
 
-            //Debug.Log($"[Transport.Send] to={clientId} len={payload.Count}");
+            //logger.Log($"[Transport.Send] to={clientId} len={payload.Count}");
 
             if (clientId == 0)
             {
-                Debug.LogWarning("[Transport.Send] Ignoring send to self (host id=0)");
+                logger.LogWarning("[Transport.Send] Ignoring send to self (host id=0)");
                 return;
             }
 
@@ -189,11 +187,12 @@ namespace Elements.Crossfire
             }
             else
             {
-                Debug.LogWarning($"[Transport.Send] data channel for {clientId} not found or not open. ReadyState={(dataChannels.TryGetValue(clientId, out var ch) ? ch.ReadyState.ToString() : "missing")}");
+                logger.LogWarning($"[Transport.Send] data channel for {clientId} not found or not open. ReadyState={(dataChannels.TryGetValue(clientId, out var ch) ? ch.ReadyState.ToString() : "missing")}");
             }
         }
 
         public override bool IsSupported => true;
+
         public override ulong ServerClientId => serverPeerId;
 
         public void SetServerClientId(ulong id)
@@ -201,17 +200,18 @@ namespace Elements.Crossfire
             serverPeerId = id;
         }
 
-        // ---- WebRTC-specific helpers ----
+#endregion
+#region WebRTC
 
         public void BeginConnection(ulong remoteId, bool isOfferer)
         {
-            Debug.Log($"Beginning WebRTC Connection with remoteId: {remoteId} and isOfferer: {isOfferer}");
+            logger.Log($"Beginning WebRTC Connection with remoteId: {remoteId} and isOfferer: {isOfferer}");
 
             var peerConnection = CreateAndConfigurePeerConnection(remoteId);
 
             if (isOfferer)
             {
-                Debug.Log("Creating data channel");
+                logger.Log("Creating data channel");
                 var dc = peerConnection.CreateDataChannel("game");
                 WireDataChannel(remoteId, dc);
                 StartCoroutine(CreateOfferAndSend(peerConnection, remoteId));
@@ -225,11 +225,11 @@ namespace Elements.Crossfire
 
         public void OnRemoteOffer(ulong remoteId, RTCSessionDescription offer)
         {
-            Debug.Log($"[Transport] OnRemoteOffer from {remoteId}");
+            logger.Log($"OnRemoteOffer from {remoteId}");
 
             if (!peerConnections.TryGetValue(remoteId, out var pc))
             {
-                Debug.Log($"[Transport] No PC for {remoteId} - creating one now");
+                logger.Log($"No PC for {remoteId} - creating one now");
                 pc = CreateAndConfigurePeerConnection(remoteId);
                 peerConnections[remoteId] = pc;
             }
@@ -241,7 +241,7 @@ namespace Elements.Crossfire
         {
             if (peerConnections.TryGetValue(remoteId, out var pc))
             {
-                Debug.Log("Handling remote answer from id " + remoteId);
+                logger.Log("Handling remote answer from id " + remoteId);
                 StartCoroutine(SetRemoteDesc(pc, answer));
             }
         }
@@ -254,32 +254,14 @@ namespace Elements.Crossfire
             {
                 pc.AddIceCandidate(candidate);
             }
-        }
+        }        
 
-        public ulong ProfileIdToClientId(string profileId, string matchId)
-        {
-            if (profileIdToClientId.TryGetValue(profileId, out var clientId))
-            {
-                return clientId;
-            }
-
-            var newId = NetworkIdMapper.DeterministicClientId(profileId, matchId);
-            profileIdToClientId[profileId] = newId;
-            clientIdToProfileId[newId] = profileId;
-
-            return newId;
-        }
-
-        public string ClientIdToProfileId(ulong id)
-        {
-            return clientIdToProfileId.TryGetValue(id, out var sid) ? sid : null;
-        }
-
-        // ---- Data Channel ----
+#endregion
+#region Data Channel
 
         private void WireDataChannel(ulong remoteId, RTCDataChannel channel)
         {
-            Debug.Log($"[Transport] Wiring data channel for {remoteId}, label={channel.Label}");
+            logger.Log($"Wiring data channel for {remoteId}, label={channel.Label}");
             dataChannels[remoteId] = channel;
 
             channel.OnMessage = bytes =>
@@ -287,16 +269,19 @@ namespace Elements.Crossfire
 
             channel.OnClose = () =>
             {
-                Debug.Log($"[Transport] DataChannel closed for {remoteId}");
+                logger.Log($"DataChannel closed for {remoteId}");
+
                 dataChannels.Remove(remoteId);
                 readyPeers.Remove(remoteId);
-                CleanupPeerStats(remoteId); // NEW: Clean up stats
+
+                CleanupPeerStats(remoteId);
+
                 Enqueue(NetworkEvent.Disconnect, remoteId, default);
             };
 
             channel.OnOpen = () =>
             {
-                Debug.Log($"[Transport] DataChannel open for {remoteId}");
+                logger.Log($"DataChannel open for {remoteId}");
 
                 // Mark peer ready
                 TryMarkPeerReady(remoteId);
@@ -308,12 +293,14 @@ namespace Elements.Crossfire
 
             if (channel.ReadyState == RTCDataChannelState.Open)
             {
-                Debug.Log($"[Transport] DataChannel for {remoteId} already open, manually firing OnOpen");
+                logger.Log($"DataChannel for {remoteId} already open, manually firing OnOpen");
+
                 channel.OnOpen?.Invoke();
             }
         }
 
-        // ---- "Peer Ready" detection ----
+#endregion
+#region Peer Ready Detection
 
         public bool IsPeerReady(ulong clientId)
         {
@@ -322,28 +309,36 @@ namespace Elements.Crossfire
 
         private bool TryMarkPeerReady(ulong remoteId)
         {
-            if (!peerConnections.ContainsKey(remoteId)) return false;
-            if (!dataChannels.TryGetValue(remoteId, out var dc)) return false;
-            if (dc.ReadyState != RTCDataChannelState.Open) return false;
+            if (!peerConnections.ContainsKey(remoteId))
+                return false;
+
+            if (!dataChannels.TryGetValue(remoteId, out var dc))
+                return false;
+
+            if (dc.ReadyState != RTCDataChannelState.Open)
+                return false;
 
             if (readyPeers.Add(remoteId))
             {
-                Debug.Log($"[Transport] Peer {remoteId} is fully ready, enqueuing Connect");
+                logger.Log($"Peer {remoteId} is fully ready, enqueuing Connect");
+
                 Enqueue(NetworkEvent.Connect, remoteId, default);
+
                 return true;
             }
 
             return false;
         }
 
-        // ---- Stats Collection Methods ----
+#endregion
+#region Stats Collection        
 
         public void StartStatsCollection()
         {
             if (statsUpdateCoroutine == null && enableStatsCollection)
             {
                 statsUpdateCoroutine = StartCoroutine(UpdateWebRTCStats());
-                Debug.Log("[WebRtcTransport] Started stats collection");
+                logger.Log("[WebRtcTransport] Started stats collection");
             }
         }
 
@@ -353,7 +348,7 @@ namespace Elements.Crossfire
             {
                 StopCoroutine(statsUpdateCoroutine);
                 statsUpdateCoroutine = null;
-                Debug.Log("[WebRtcTransport] Stopped stats collection");
+                logger.Log("[WebRtcTransport] Stopped stats collection");
             }
         }
 
@@ -398,7 +393,7 @@ namespace Elements.Crossfire
                 }
                 else if (statsOp.IsError)
                 {
-                    Debug.LogWarning($"[WebRtcTransport] Failed to get stats for client {clientId}: {statsOp.Error.message}");
+                    logger.LogWarning($"[WebRtcTransport] Failed to get stats for client {clientId}: {statsOp.Error.message}");
                 }
             }
         }
@@ -468,7 +463,8 @@ namespace Elements.Crossfire
             lastBytesSent.Clear();
         }
 
-        // ---- NEW: IWebRtcTransportStats Implementation ----
+#endregion
+#region IWebRtcTransportStats        
 
         public float GetPeerLatency(ulong clientId)
         {
@@ -519,7 +515,8 @@ namespace Elements.Crossfire
             return parsedStats.TryGetValue(clientId, out var stats) ? stats : default;
         }
 
-        // ---- Coroutines ----
+#endregion
+#region Coroutines
 
         private IEnumerator CreateOfferAndSend(RTCPeerConnection pc, ulong remoteId)
         {
@@ -569,7 +566,8 @@ namespace Elements.Crossfire
             pc.OnDataChannel = ch => WireDataChannel(remoteId, ch);
             pc.OnIceConnectionChange = state =>
             {
-                Debug.Log($"[PC:{remoteId}] ICE state changed: {state}");
+                logger.Log($"[PC:{remoteId}] ICE state changed: {state}");
+
                 if (state == RTCIceConnectionState.Connected || state == RTCIceConnectionState.Completed)
                     TryMarkPeerReady(remoteId);
             };
@@ -591,10 +589,10 @@ namespace Elements.Crossfire
                             urls = new[]
                             {
                                 "stun:stun.l.google.com:19302",
-                                //"stun:stun1.l.google.com:19302",
-                                //"stun:stun2.l.google.com:19302",
-                                //"stun:stun3.l.google.com:19302",
-                                //"stun:stun4.l.google.com:19302"
+                                "stun:stun1.l.google.com:19302",
+                                "stun:stun2.l.google.com:19302",
+                                "stun:stun3.l.google.com:19302",
+                                "stun:stun4.l.google.com:19302"
                             }
                         }
                     }
@@ -607,4 +605,6 @@ namespace Elements.Crossfire
             events.Enqueue((@event, id, data, Time.realtimeSinceStartup));
         }
     }
+
+#endregion
 }

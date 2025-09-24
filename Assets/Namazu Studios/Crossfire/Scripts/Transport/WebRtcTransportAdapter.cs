@@ -32,9 +32,10 @@ namespace Elements.Crossfire
 
         private Dictionary<string, ulong> profileToNgoId = new();
         private Dictionary<ulong, string> ngoIdToProfile = new();
-        private string matchId;
-        private string localProfileId;
         private ISignalingClient signalingClient;
+        private NetworkSessionConfig sessionConfig;
+
+        private Logger logger = LoggerFactory.GetLogger("WebRtcTransportAdapter");
 
         public void Initialize(NetworkManager networkManager)
         {
@@ -55,20 +56,17 @@ namespace Elements.Crossfire
             transport.OnSendIce += HandleSendIce;
 
             transport.OnStatsUpdated += HandleStatsUpdated;
+
             transport.StartStatsCollection();
+
             statsUpdateCoroutine = StartCoroutine(UpdateNetworkStats());            
             qualityMonitorCoroutine = StartCoroutine(MonitorConnectionQuality());
         }
 
-        public void SetSignalingClient(ISignalingClient client, string profileId)
+        public void SetSignalingClient(ISignalingClient signalingClient, NetworkSessionConfig sessionConfig)
         {
-            signalingClient = client;
-            localProfileId = profileId;
-        }
-
-        public void SetMatchId(string id)
-        {
-            matchId = id;
+            this.signalingClient = signalingClient;
+            this.sessionConfig = sessionConfig;
         }
 
         public void BeginConnection(string peerId, bool isOfferer)
@@ -98,32 +96,40 @@ namespace Elements.Crossfire
             var ngoId = GetOrCreateNgoId(fromPeerId);
             var json = JObject.Parse(payload);
 
+            //logger.Log($"Received signaling message {json}");
+
             switch (messageType)
             {
                 case MessageType.SDP_OFFER:
+
                     var offer = new RTCSessionDescription
                     {
                         type = RTCSdpType.Offer,
                         sdp = (string)json["peerSdp"]
                     };
+
                     transport.OnRemoteOffer(ngoId, offer);
                     break;
 
                 case MessageType.SDP_ANSWER:
+
                     var answer = new RTCSessionDescription
                     {
                         type = RTCSdpType.Answer,
                         sdp = (string)json["peerSdp"]
                     };
+
                     transport.OnRemoteAnswer(ngoId, answer);
                     break;
 
                 case MessageType.CANDIDATE:
+
                     var candidate = new RTCIceCandidate(new RTCIceCandidateInit
                     {
                         candidate = (string)json["candidate"],
                         sdpMid = (string)json["mid"]
                     });
+
                     transport.OnRemoteIce(ngoId, candidate);
                     break;
             }
@@ -227,6 +233,7 @@ namespace Elements.Crossfire
 
             // Update connection quality based on stats
             var newQuality = CalculateConnectionQuality(newStats);
+
             if (!peerQualities.TryGetValue(profileId, out var oldQuality) || oldQuality != newQuality)
             {
                 peerQualities[profileId] = newQuality;
@@ -238,10 +245,13 @@ namespace Elements.Crossfire
         {
             if (stats.latency > 200f || stats.packetLoss > 0.05f)
                 return ConnectionQuality.Poor;
+
             if (stats.latency > 100f || stats.packetLoss > 0.02f)
                 return ConnectionQuality.Fair;
+
             if (stats.latency > 50f || stats.packetLoss > 0.01f)
                 return ConnectionQuality.Good;
+
             return ConnectionQuality.Excellent;
         }
 
@@ -249,10 +259,11 @@ namespace Elements.Crossfire
         {
             if (!profileToNgoId.TryGetValue(profileId, out var ngoId))
             {
-                ngoId = NetworkIdMapper.DeterministicClientId(profileId, matchId);
+                ngoId = NetworkIdMapper.DeterministicClientId(profileId, sessionConfig.matchId);
                 profileToNgoId[profileId] = ngoId;
                 ngoIdToProfile[ngoId] = profileId;
             }
+
             return ngoId;
         }
 
@@ -261,20 +272,21 @@ namespace Elements.Crossfire
         {
             if (!ngoIdToProfile.TryGetValue(to, out var recipientProfileId))
             {
-                Debug.LogError($"[TransportAdapter] Cannot send offer - unknown NGO ID: {to}");
+                logger.LogError($"Cannot send offer - unknown NGO ID: {to}");
                 return;
             }
 
             // Don't send to self
-            if (recipientProfileId == localProfileId) return;
+            if (recipientProfileId == sessionConfig.profileId) return;
 
             var signal = new SdpOfferDirectSignal();
             signal.setPeerSdp(offer.sdp);
-            signal.setProfileId(localProfileId);
+            signal.setProfileId(sessionConfig.profileId);
             signal.setRecipientProfileId(recipientProfileId);
 
             var msg = signal.ToJsonString<SdpOfferDirectSignal>();
-            Debug.Log($"[TransportAdapter] Sending offer to {recipientProfileId}");
+
+            logger.Log($"Sending offer: {msg}");
 
             signalingClient?.SendWSMessage(msg);
         }
@@ -283,20 +295,21 @@ namespace Elements.Crossfire
         {
             if (!ngoIdToProfile.TryGetValue(to, out var recipientProfileId))
             {
-                Debug.LogError($"[TransportAdapter] Cannot send answer - unknown NGO ID: {to}");
+                logger.LogError($"Cannot send answer - unknown NGO ID: {to}");
                 return;
             }
 
             // Don't send to self
-            if (recipientProfileId == localProfileId) return;
+            if (recipientProfileId == sessionConfig.profileId) return;
 
             var signal = new SdpAnswerDirectSignal();
             signal.setPeerSdp(answer.sdp);
-            signal.setProfileId(localProfileId);
+            signal.setProfileId(sessionConfig.profileId);
             signal.setRecipientProfileId(recipientProfileId);
 
             var msg = signal.ToJsonString<SdpAnswerDirectSignal>();
-            Debug.Log($"[TransportAdapter] Sending answer to {recipientProfileId}");
+
+            logger.Log($"Sending answer: {msg}");
 
             signalingClient?.SendWSMessage(msg);
         }
@@ -305,21 +318,22 @@ namespace Elements.Crossfire
         {
             if (!ngoIdToProfile.TryGetValue(to, out var recipientProfileId))
             {
-                Debug.LogError($"[TransportAdapter] Cannot send ICE - unknown NGO ID: {to}");
+                logger.LogError($"Cannot send ICE - unknown NGO ID: {to}");
                 return;
             }
 
             // Don't send to self
-            if (recipientProfileId == localProfileId) return;
+            if (recipientProfileId == sessionConfig.profileId) return;
 
             var signal = new CandidateDirectSignal();
-            signal.setProfileId(localProfileId);
+            signal.setProfileId(sessionConfig.profileId);
             signal.setRecipientProfileId(recipientProfileId);
             signal.setMid(candidate.SdpMid);
             signal.setCandidate(candidate.Candidate);
 
             var msg = signal.ToJsonString<CandidateDirectSignal>();
-            Debug.Log($"[TransportAdapter] Sending ICE candidate to {recipientProfileId}");
+
+            logger.Log($"Sending ICE candidate: {msg}");
 
             signalingClient?.SendWSMessage(msg);
         }
