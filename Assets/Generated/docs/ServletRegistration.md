@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RunAsRole** | **string** |  | [optional] 
 **Mappings** | **List&lt;string&gt;** |  | [optional] 
+**RunAsRole** | **string** |  | [optional] 
 **Name** | **string** |  | [optional] 
 **ClassName** | **string** |  | [optional] 
 **InitParameters** | **Dictionary&lt;string, string&gt;** |  | [optional] 

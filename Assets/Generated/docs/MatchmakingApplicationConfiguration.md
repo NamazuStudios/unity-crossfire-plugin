@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **Success** | [**CallbackDefinition**](CallbackDefinition.md) |  | [optional] 
 **Matchmaker** | [**ElementServiceReference**](ElementServiceReference.md) |  | [optional] 
 **MaxProfiles** | **int** | The maximum number of profiles that can be matched in a single match.  | [optional] 
+**LingerSeconds** | **int** | The amount of time a match will linger after it is marked as expired. | [optional] 
+**TimeoutSeconds** | **int** | The absolute timeout of the match. A match will be automatically deleted after this amount of time. | [optional] 
 **Metadata** | **Dictionary&lt;string, Object&gt;** | The metadata for this matchmaking configuration. This will be copied to the match when it is created. | [optional] 
 **MetadataSpec** | [**MetadataSpec**](MetadataSpec.md) |  | [optional] 
 

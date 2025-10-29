@@ -26,6 +26,7 @@ All URIs are relative to *http://localhost:8080/api/rest*
 | [**CreateLargeObjectFromUrl**](DefaultApi.md#createlargeobjectfromurl) | **POST** /large_object/from_url | Creates a LargeObject from provided URL |
 | [**CreateLeaderboard**](DefaultApi.md#createleaderboard) | **POST** /leaderboard | Creates a New Leaderboard |
 | [**CreateMatch**](DefaultApi.md#creatematch) | **POST** /match | Creates a Match |
+| [**CreateMatch1**](DefaultApi.md#creatematch1) | **POST** /multi_match | Creates a MultiMatch |
 | [**CreateMatchmakingApplicationConfiguration**](DefaultApi.md#creatematchmakingapplicationconfiguration) | **POST** /application/{applicationNameOrId}/configuration/matchmaking | Creates a new iOS ApplicationConfiguration |
 | [**CreateMetadata**](DefaultApi.md#createmetadata) | **POST** /metadata | Creates a new Metadata object |
 | [**CreateMetadataSpec**](DefaultApi.md#createmetadataspec) | **POST** /metadata_spec | Creates a new Metadata Spec definition |
@@ -50,6 +51,7 @@ All URIs are relative to *http://localhost:8080/api/rest*
 | [**DeactivateProfile**](DefaultApi.md#deactivateprofile) | **DELETE** /profile/{profileId} | Deletes a Profile |
 | [**DeactivateUser**](DefaultApi.md#deactivateuser) | **DELETE** /user/{name} | Deletes a User |
 | [**DeleteAdvancedInventoryItem**](DefaultApi.md#deleteadvancedinventoryitem) | **DELETE** /inventory/advanced/{inventoryItemId} | Delete the inventory item as identified by the given item name/id |
+| [**DeleteAllMatches**](DefaultApi.md#deleteallmatches) | **DELETE** /multi_match | Deletes a MultiMatch |
 | [**DeleteApplication**](DefaultApi.md#deleteapplication) | **DELETE** /application/{nameOrId} | Deletes an Application |
 | [**DeleteAuthScheme**](DefaultApi.md#deleteauthscheme) | **DELETE** /auth_scheme/custom/{authSchemeId} | Deletes an Auth Scheme |
 | [**DeleteAuthScheme1**](DefaultApi.md#deleteauthscheme1) | **DELETE** /auth_scheme/oauth2/{oAuth2AuthSchemeId} | Deletes an Auth Scheme |
@@ -67,6 +69,7 @@ All URIs are relative to *http://localhost:8080/api/rest*
 | [**DeleteLargeObject**](DefaultApi.md#deletelargeobject) | **DELETE** /large_object/{largeObjectId} | Deletes a LargeObject |
 | [**DeleteLeaderboard**](DefaultApi.md#deleteleaderboard) | **DELETE** /leaderboard/{nameOrId} | Deletes an Leaderboard |
 | [**DeleteMatch**](DefaultApi.md#deletematch) | **DELETE** /match/{matchId} | Deletes a Match |
+| [**DeleteMatch1**](DefaultApi.md#deletematch1) | **DELETE** /multi_match/{matchId} | Deletes a MultiMatch |
 | [**DeleteMatchmakingApplicationConfiguration**](DefaultApi.md#deletematchmakingapplicationconfiguration) | **DELETE** /application/{applicationNameOrId}/configuration/matchmaking/{applicationConfigurationNameOrId} | Deletes a iOS ApplicationConfiguration |
 | [**DeleteMetadata**](DefaultApi.md#deletemetadata) | **DELETE** /metadata/{id} | Deletes a specific Metadata object |
 | [**DeleteMetadataSpec**](DefaultApi.md#deletemetadataspec) | **DELETE** /metadata_spec/{metadataSpecId} | Deletes a MetadataSpec |
@@ -76,12 +79,15 @@ All URIs are relative to *http://localhost:8080/api/rest*
 | [**DeleteSaveDocument**](DefaultApi.md#deletesavedocument) | **DELETE** /save_data/{saveDataDocumentId} | Deletes a save data document |
 | [**DeleteSchedule**](DefaultApi.md#deleteschedule) | **DELETE** /schedule/{scheduleNameOrId} | Deletes the Schedule identified by id or by name |
 | [**DeleteScheduleEvent**](DefaultApi.md#deletescheduleevent) | **DELETE** /schedule/{scheduleNameOrId}/event/{scheduleEventId} | Deletes the ScheduleEvent identified by id or by name |
-| [**DeleteSimpleInventoryItem**](DefaultApi.md#deletesimpleinventoryitem) | **DELETE** /inventory/simple/{inventoryItemId} | Delete the inventory item as identified by the given item name/id |
+| [**DeleteSimpleInventoryItem**](DefaultApi.md#deletesimpleinventoryitem) | **DELETE** /item/{identifier} | Delete the item as identified by the given item name/id |
+| [**DeleteSimpleInventoryItem1**](DefaultApi.md#deletesimpleinventoryitem1) | **DELETE** /inventory/simple/{inventoryItemId} | Delete the inventory item as identified by the given item name/id |
 | [**DeleteVault**](DefaultApi.md#deletevault) | **DELETE** /blockchain/omni/vault/{vaultId} | Deletes a  Vault |
 | [**DeleteWallet**](DefaultApi.md#deletewallet) | **DELETE** /blockchain/omni/vault/{vaultId}/wallet/{walletId} | Deletes a  Wallet |
 | [**GenerateCode**](DefaultApi.md#generatecode) | **POST** /codegen | Generate Client API Code |
 | [**GetAdvancedInventoryItem**](DefaultApi.md#getadvancedinventoryitem) | **GET** /inventory/advanced/{inventoryItemId} | Gets inventory item for the specified item |
 | [**GetAdvancedInventoryItems**](DefaultApi.md#getadvancedinventoryitems) | **GET** /inventory/advanced | Search inventory items |
+| [**GetAllApplicationStatuses**](DefaultApi.md#getallapplicationstatuses) | **GET** /elements/application | Gets the status of all applications. |
+| [**GetAllInstalledElements**](DefaultApi.md#getallinstalledelements) | **GET** /elements/system | Gets the status of all applications. |
 | [**GetApplication**](DefaultApi.md#getapplication) | **GET** /application/{nameOrId} | Get an Application |
 | [**GetApplicationProfiles**](DefaultApi.md#getapplicationprofiles) | **GET** /application/{applicationNameOrId}/configuration | Searches application profiles |
 | [**GetApplications**](DefaultApi.md#getapplications) | **GET** /application | Search Applications |
@@ -113,11 +119,14 @@ All URIs are relative to *http://localhost:8080/api/rest*
 | [**GetItems**](DefaultApi.md#getitems) | **GET** /item | Retrieves all Items |
 | [**GetJsonSchema**](DefaultApi.md#getjsonschema) | **GET** /metadata_spec/{metadataSpecName}/schema.json | Gets a specific JSON Schema |
 | [**GetLargeObject**](DefaultApi.md#getlargeobject) | **GET** /large_object/{largeObjectId} | Get a LargeObject |
+| [**GetLargeObjects**](DefaultApi.md#getlargeobjects) | **GET** /large_object | Get a LargeObject |
 | [**GetLeaderboard**](DefaultApi.md#getleaderboard) | **GET** /leaderboard/{nameOrId} | Get an Leaderboard |
 | [**GetLeaderboards**](DefaultApi.md#getleaderboards) | **GET** /leaderboard | Search Leaderboards |
 | [**GetMatch**](DefaultApi.md#getmatch) | **GET** /match/{matchId} | Gets a Specific Match |
+| [**GetMatch1**](DefaultApi.md#getmatch1) | **GET** /multi_match/{matchId} | Gets a Specific MultiMatch |
 | [**GetMatchedUserProfilesWithPhoneNumbers**](DefaultApi.md#getmatcheduserprofileswithphonenumbers) | **POST** /invite | Match normalized phone numbers with requested list |
 | [**GetMatches**](DefaultApi.md#getmatches) | **GET** /match | List Matches |
+| [**GetMatches1**](DefaultApi.md#getmatches1) | **GET** /multi_match | List MultiMatches |
 | [**GetMatchmakingApplicationConfiguration**](DefaultApi.md#getmatchmakingapplicationconfiguration) | **GET** /application/{applicationNameOrId}/configuration/matchmaking/{applicationConfigurationNameOrId} | Gets a iOS Application Configuration |
 | [**GetMetadataObject**](DefaultApi.md#getmetadataobject) | **GET** /metadata/{id} | Gets a specific Metadata object |
 | [**GetMetadataObjects**](DefaultApi.md#getmetadataobjects) | **GET** /metadata | Search Metadata |
@@ -174,6 +183,7 @@ All URIs are relative to *http://localhost:8080/api/rest*
 | [**UpdateLargeObject**](DefaultApi.md#updatelargeobject) | **PUT** /large_object/{largeObjectId} | Updates a LargeObject |
 | [**UpdateLargeObjectContents**](DefaultApi.md#updatelargeobjectcontents) | **PUT** /large_object/{largeObjectId}/content | Updates a LargeObject content |
 | [**UpdateLeaderboard**](DefaultApi.md#updateleaderboard) | **PUT** /leaderboard/{nameOrId} | Updates an Leaderboard |
+| [**UpdateMatch**](DefaultApi.md#updatematch) | **PUT** /multi_match/{matchId} | Updates a MultiMatch |
 | [**UpdateMatchmakingApplicationConfiguration**](DefaultApi.md#updatematchmakingapplicationconfiguration) | **PUT** /application/{applicationNameOrId}/configuration/matchmaking/{applicationConfigurationNameOrId} | Updates a iOS ApplicationConfiguration |
 | [**UpdateMetadata**](DefaultApi.md#updatemetadata) | **PUT** /metadata/{id} | Updates a specific Metadata object |
 | [**UpdateMetadataSpec**](DefaultApi.md#updatemetadataspec) | **PUT** /metadata_spec/{metadataSpecId} | Updates a Metadata Spec |
@@ -296,14 +306,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -406,14 +416,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -508,14 +518,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -610,14 +620,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -718,14 +728,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -826,14 +836,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -934,14 +944,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1042,14 +1052,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1150,14 +1160,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1258,14 +1268,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1366,14 +1376,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1476,14 +1486,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1586,14 +1596,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1692,14 +1702,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1802,14 +1812,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1912,14 +1922,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2020,14 +2030,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2128,14 +2138,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2234,14 +2244,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2340,14 +2350,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2448,14 +2458,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2556,14 +2566,122 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
+| **0** | default response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="creatematch1"></a>
+# **CreateMatch1**
+> MultiMatch CreateMatch1 (MultiMatch multiMatch = null)
+
+Creates a MultiMatch
+
+This method accepts an instance of MultiMatch and creates a new DB entry for it. Though it is generally recommended to create a new MultiMatch via matchmaking code in an Element, it can be created via REST for the purposes of testing or custom workflows.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Elements.Api;
+using Elements.Client;
+using Elements.Model;
+
+namespace Example
+{
+    public class CreateMatch1Example
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost:8080/api/rest";
+            // Configure API key authorization: auth_bearer
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure API key authorization: session_secret
+            config.AddApiKey("Elements-SessionSecret", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Elements-SessionSecret", "Bearer");
+
+            var apiInstance = new DefaultApi(config);
+            var multiMatch = new MultiMatch(); // MultiMatch |  (optional) 
+
+            try
+            {
+                // Creates a MultiMatch
+                MultiMatch result = apiInstance.CreateMatch1(multiMatch);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DefaultApi.CreateMatch1: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateMatch1WithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Creates a MultiMatch
+    ApiResponse<MultiMatch> response = apiInstance.CreateMatch1WithHttpInfo(multiMatch);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DefaultApi.CreateMatch1WithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **multiMatch** | [**MultiMatch**](MultiMatch.md) |  | [optional]  |
+
+### Return type
+
+[**MultiMatch**](MultiMatch.md)
+
+### Authorization
+
+[auth_bearer](../README.md#auth_bearer), [session_secret](../README.md#session_secret)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** |  |  -  |
+| **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2666,14 +2784,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2774,14 +2892,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2882,14 +3000,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2990,14 +3108,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3098,14 +3216,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3204,14 +3322,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3312,14 +3430,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3420,14 +3538,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3530,14 +3648,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3638,14 +3756,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3746,14 +3864,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3854,14 +3972,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3962,14 +4080,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4072,14 +4190,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4182,14 +4300,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4290,14 +4408,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4398,14 +4516,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4506,14 +4624,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4614,14 +4732,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4722,14 +4840,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4832,14 +4950,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4936,14 +5054,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5040,14 +5158,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5144,14 +5262,113 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
+| **0** | default response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deleteallmatches"></a>
+# **DeleteAllMatches**
+> void DeleteAllMatches ()
+
+Deletes a MultiMatch
+
+Deletes and permanently removes all MultiMatches from he server.  This effectively will cancel any pending request for a match.  If a game is currently being played against the match, the server may reject the request to delete the match until the game concludes.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Elements.Api;
+using Elements.Client;
+using Elements.Model;
+
+namespace Example
+{
+    public class DeleteAllMatchesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost:8080/api/rest";
+            // Configure API key authorization: auth_bearer
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure API key authorization: session_secret
+            config.AddApiKey("Elements-SessionSecret", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Elements-SessionSecret", "Bearer");
+
+            var apiInstance = new DefaultApi(config);
+
+            try
+            {
+                // Deletes a MultiMatch
+                apiInstance.DeleteAllMatches();
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DefaultApi.DeleteAllMatches: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteAllMatchesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Deletes a MultiMatch
+    apiInstance.DeleteAllMatchesWithHttpInfo();
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DefaultApi.DeleteAllMatchesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[auth_bearer](../README.md#auth_bearer), [session_secret](../README.md#session_secret)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** |  |  -  |
+| **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5248,14 +5465,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5352,14 +5569,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5456,14 +5673,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5560,14 +5777,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5664,14 +5881,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5766,14 +5983,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5870,14 +6087,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5970,14 +6187,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6076,14 +6293,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6182,14 +6399,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6286,14 +6503,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6390,14 +6607,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6496,14 +6713,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6602,14 +6819,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6704,14 +6921,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6808,14 +7025,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6912,14 +7129,118 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
+| **0** | default response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deletematch1"></a>
+# **DeleteMatch1**
+> void DeleteMatch1 (string matchId)
+
+Deletes a MultiMatch
+
+Deletes and permanently removes the MultiMatch from he server.  This effectively will cancel any pending request for a match.  If a game is currently being played against the match, the server may reject the request to delete the match until the game concludes.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Elements.Api;
+using Elements.Client;
+using Elements.Model;
+
+namespace Example
+{
+    public class DeleteMatch1Example
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost:8080/api/rest";
+            // Configure API key authorization: auth_bearer
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure API key authorization: session_secret
+            config.AddApiKey("Elements-SessionSecret", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Elements-SessionSecret", "Bearer");
+
+            var apiInstance = new DefaultApi(config);
+            var matchId = "matchId_example";  // string | 
+
+            try
+            {
+                // Deletes a MultiMatch
+                apiInstance.DeleteMatch1(matchId);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DefaultApi.DeleteMatch1: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteMatch1WithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Deletes a MultiMatch
+    apiInstance.DeleteMatch1WithHttpInfo(matchId);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DefaultApi.DeleteMatch1WithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **matchId** | **string** |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[auth_bearer](../README.md#auth_bearer), [session_secret](../README.md#session_secret)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** |  |  -  |
+| **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7018,14 +7339,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7122,14 +7443,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7226,14 +7547,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7330,14 +7651,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7436,14 +7757,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7540,14 +7861,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7642,14 +7963,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7746,14 +8067,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7852,25 +8173,25 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="deletesimpleinventoryitem"></a>
 # **DeleteSimpleInventoryItem**
-> void DeleteSimpleInventoryItem (string inventoryItemId)
+> void DeleteSimpleInventoryItem (string identifier)
 
-Delete the inventory item as identified by the given item name/id
+Delete the item as identified by the given item name/id
 
-Delete the inventory item as identified by the given item name/id
+Delete the item as identified by the given item name/id
 
 ### Example
 ```csharp
@@ -7898,12 +8219,12 @@ namespace Example
             // config.AddApiKeyPrefix("Elements-SessionSecret", "Bearer");
 
             var apiInstance = new DefaultApi(config);
-            var inventoryItemId = "inventoryItemId_example";  // string | 
+            var identifier = "identifier_example";  // string | 
 
             try
             {
-                // Delete the inventory item as identified by the given item name/id
-                apiInstance.DeleteSimpleInventoryItem(inventoryItemId);
+                // Delete the item as identified by the given item name/id
+                apiInstance.DeleteSimpleInventoryItem(identifier);
             }
             catch (ApiException  e)
             {
@@ -7922,12 +8243,116 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Delete the inventory item as identified by the given item name/id
-    apiInstance.DeleteSimpleInventoryItemWithHttpInfo(inventoryItemId);
+    // Delete the item as identified by the given item name/id
+    apiInstance.DeleteSimpleInventoryItemWithHttpInfo(identifier);
 }
 catch (ApiException e)
 {
     Debug.Print("Exception when calling DefaultApi.DeleteSimpleInventoryItemWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **identifier** | **string** |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[auth_bearer](../README.md#auth_bearer), [session_secret](../README.md#session_secret)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** |  |  -  |
+| **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
+| **0** | default response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deletesimpleinventoryitem1"></a>
+# **DeleteSimpleInventoryItem1**
+> void DeleteSimpleInventoryItem1 (string inventoryItemId)
+
+Delete the inventory item as identified by the given item name/id
+
+Delete the inventory item as identified by the given item name/id
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Elements.Api;
+using Elements.Client;
+using Elements.Model;
+
+namespace Example
+{
+    public class DeleteSimpleInventoryItem1Example
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost:8080/api/rest";
+            // Configure API key authorization: auth_bearer
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure API key authorization: session_secret
+            config.AddApiKey("Elements-SessionSecret", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Elements-SessionSecret", "Bearer");
+
+            var apiInstance = new DefaultApi(config);
+            var inventoryItemId = "inventoryItemId_example";  // string | 
+
+            try
+            {
+                // Delete the inventory item as identified by the given item name/id
+                apiInstance.DeleteSimpleInventoryItem1(inventoryItemId);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DefaultApi.DeleteSimpleInventoryItem1: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteSimpleInventoryItem1WithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete the inventory item as identified by the given item name/id
+    apiInstance.DeleteSimpleInventoryItem1WithHttpInfo(inventoryItemId);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DefaultApi.DeleteSimpleInventoryItem1WithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -7956,14 +8381,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -8060,14 +8485,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -8166,14 +8591,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -8270,14 +8695,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -8378,14 +8803,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -8492,14 +8917,216 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
+| **0** | default response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getallapplicationstatuses"></a>
+# **GetAllApplicationStatuses**
+> List&lt;ApplicationStatus&gt; GetAllApplicationStatuses ()
+
+Gets the status of all applications.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Elements.Api;
+using Elements.Client;
+using Elements.Model;
+
+namespace Example
+{
+    public class GetAllApplicationStatusesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost:8080/api/rest";
+            // Configure API key authorization: auth_bearer
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure API key authorization: session_secret
+            config.AddApiKey("Elements-SessionSecret", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Elements-SessionSecret", "Bearer");
+
+            var apiInstance = new DefaultApi(config);
+
+            try
+            {
+                // Gets the status of all applications.
+                List<ApplicationStatus> result = apiInstance.GetAllApplicationStatuses();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DefaultApi.GetAllApplicationStatuses: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAllApplicationStatusesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Gets the status of all applications.
+    ApiResponse<List<ApplicationStatus>> response = apiInstance.GetAllApplicationStatusesWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DefaultApi.GetAllApplicationStatusesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+### Return type
+
+[**List&lt;ApplicationStatus&gt;**](ApplicationStatus.md)
+
+### Authorization
+
+[auth_bearer](../README.md#auth_bearer), [session_secret](../README.md#session_secret)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** |  |  -  |
+| **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
+| **0** | default response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getallinstalledelements"></a>
+# **GetAllInstalledElements**
+> List&lt;ElementMetadata&gt; GetAllInstalledElements ()
+
+Gets the status of all applications.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Elements.Api;
+using Elements.Client;
+using Elements.Model;
+
+namespace Example
+{
+    public class GetAllInstalledElementsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost:8080/api/rest";
+            // Configure API key authorization: auth_bearer
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure API key authorization: session_secret
+            config.AddApiKey("Elements-SessionSecret", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Elements-SessionSecret", "Bearer");
+
+            var apiInstance = new DefaultApi(config);
+
+            try
+            {
+                // Gets the status of all applications.
+                List<ElementMetadata> result = apiInstance.GetAllInstalledElements();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DefaultApi.GetAllInstalledElements: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAllInstalledElementsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Gets the status of all applications.
+    ApiResponse<List<ElementMetadata>> response = apiInstance.GetAllInstalledElementsWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DefaultApi.GetAllInstalledElementsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+### Return type
+
+[**List&lt;ElementMetadata&gt;**](ElementMetadata.md)
+
+### Authorization
+
+[auth_bearer](../README.md#auth_bearer), [session_secret](../README.md#session_secret)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** |  |  -  |
+| **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -8600,14 +9227,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -8714,14 +9341,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -8826,14 +9453,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -8934,14 +9561,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -9042,14 +9669,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -9150,14 +9777,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -9262,14 +9889,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -9374,14 +10001,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -9486,14 +10113,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -9590,14 +10217,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -9693,14 +10320,14 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -9796,14 +10423,14 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -9902,14 +10529,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -10006,14 +10633,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -10114,14 +10741,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -10230,14 +10857,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -10338,14 +10965,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -10448,14 +11075,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -10558,14 +11185,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -10666,14 +11293,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -10778,14 +11405,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -10890,14 +11517,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -10998,14 +11625,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -11110,14 +11737,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -11220,14 +11847,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -11330,14 +11957,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -11440,14 +12067,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -11548,14 +12175,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -11664,14 +12291,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -11772,14 +12399,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -11878,14 +12505,124 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
+| **0** | default response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getlargeobjects"></a>
+# **GetLargeObjects**
+> PaginationLargeObject GetLargeObjects (int? offset = null, int? count = null, string search = null)
+
+Get a LargeObject
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Elements.Api;
+using Elements.Client;
+using Elements.Model;
+
+namespace Example
+{
+    public class GetLargeObjectsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost:8080/api/rest";
+            // Configure API key authorization: auth_bearer
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure API key authorization: session_secret
+            config.AddApiKey("Elements-SessionSecret", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Elements-SessionSecret", "Bearer");
+
+            var apiInstance = new DefaultApi(config);
+            var offset = 56;  // int? |  (optional) 
+            var count = 56;  // int? |  (optional) 
+            var search = "search_example";  // string |  (optional) 
+
+            try
+            {
+                // Get a LargeObject
+                PaginationLargeObject result = apiInstance.GetLargeObjects(offset, count, search);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DefaultApi.GetLargeObjects: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetLargeObjectsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a LargeObject
+    ApiResponse<PaginationLargeObject> response = apiInstance.GetLargeObjectsWithHttpInfo(offset, count, search);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DefaultApi.GetLargeObjectsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **offset** | **int?** |  | [optional]  |
+| **count** | **int?** |  | [optional]  |
+| **search** | **string** |  | [optional]  |
+
+### Return type
+
+[**PaginationLargeObject**](PaginationLargeObject.md)
+
+### Authorization
+
+[auth_bearer](../README.md#auth_bearer), [session_secret](../README.md#session_secret)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** |  |  -  |
+| **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -11986,14 +12723,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -12098,14 +12835,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -12208,15 +12945,123 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getmatch1"></a>
+# **GetMatch1**
+> MultiMatch GetMatch1 (string matchId)
+
+Gets a Specific MultiMatch
+
+Gets a specific match given the match's unique ID.  Additionally, it is possible to instruct the API to wait for a period of time before sending the response.  The request will intentionally hang until the requested MultiMatch with ID has been updated in the database.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Elements.Api;
+using Elements.Client;
+using Elements.Model;
+
+namespace Example
+{
+    public class GetMatch1Example
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost:8080/api/rest";
+            // Configure API key authorization: auth_bearer
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure API key authorization: session_secret
+            config.AddApiKey("Elements-SessionSecret", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Elements-SessionSecret", "Bearer");
+
+            var apiInstance = new DefaultApi(config);
+            var matchId = "matchId_example";  // string | 
+
+            try
+            {
+                // Gets a Specific MultiMatch
+                MultiMatch result = apiInstance.GetMatch1(matchId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DefaultApi.GetMatch1: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetMatch1WithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Gets a Specific MultiMatch
+    ApiResponse<MultiMatch> response = apiInstance.GetMatch1WithHttpInfo(matchId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DefaultApi.GetMatch1WithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **matchId** | **string** |  |  |
+
+### Return type
+
+[**MultiMatch**](MultiMatch.md)
+
+### Authorization
+
+[auth_bearer](../README.md#auth_bearer), [session_secret](../README.md#session_secret)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** |  |  -  |
+| **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
+| **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -12320,14 +13165,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -12432,14 +13277,126 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
+| **0** | default response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getmatches1"></a>
+# **GetMatches1**
+> PaginationMultiMatch GetMatches1 (int? offset = null, int? count = null, string search = null)
+
+List MultiMatches
+
+Lists all matches available.  Under most circumstances, this will requires that a profile be made available to the request.  The server may choose to return an error if no suitable profile can be determined.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Elements.Api;
+using Elements.Client;
+using Elements.Model;
+
+namespace Example
+{
+    public class GetMatches1Example
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost:8080/api/rest";
+            // Configure API key authorization: auth_bearer
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure API key authorization: session_secret
+            config.AddApiKey("Elements-SessionSecret", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Elements-SessionSecret", "Bearer");
+
+            var apiInstance = new DefaultApi(config);
+            var offset = 56;  // int? |  (optional) 
+            var count = 56;  // int? |  (optional) 
+            var search = "search_example";  // string |  (optional) 
+
+            try
+            {
+                // List MultiMatches
+                PaginationMultiMatch result = apiInstance.GetMatches1(offset, count, search);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DefaultApi.GetMatches1: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetMatches1WithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List MultiMatches
+    ApiResponse<PaginationMultiMatch> response = apiInstance.GetMatches1WithHttpInfo(offset, count, search);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DefaultApi.GetMatches1WithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **offset** | **int?** |  | [optional]  |
+| **count** | **int?** |  | [optional]  |
+| **search** | **string** |  | [optional]  |
+
+### Return type
+
+[**PaginationMultiMatch**](PaginationMultiMatch.md)
+
+### Authorization
+
+[auth_bearer](../README.md#auth_bearer), [session_secret](../README.md#session_secret)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** |  |  -  |
+| **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -12542,14 +13499,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -12650,14 +13607,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -12762,14 +13719,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -12870,14 +13827,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -12980,14 +13937,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -13088,14 +14045,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -13202,14 +14159,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -13312,14 +14269,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -13420,14 +14377,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -13528,14 +14485,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -13638,14 +14595,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -13758,14 +14715,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -13866,14 +14823,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -13969,14 +14926,14 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -14085,14 +15042,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -14201,14 +15158,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -14307,14 +15264,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -14419,14 +15376,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -14527,14 +15484,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -14643,14 +15600,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -14751,14 +15708,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -14861,14 +15818,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -14977,14 +15934,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -15091,14 +16048,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -15205,14 +16162,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -15308,14 +16265,14 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -15416,14 +16373,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -15530,14 +16487,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -15638,14 +16595,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -15752,14 +16709,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -15860,14 +16817,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -15970,14 +16927,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -16082,14 +17039,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -16190,14 +17147,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -16302,14 +17259,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -16405,14 +17362,14 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -16515,14 +17472,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -16623,14 +17580,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -16741,14 +17698,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -16847,14 +17804,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -16953,14 +17910,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -17061,14 +18018,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -17171,14 +18128,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -17281,14 +18238,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -17391,14 +18348,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -17501,14 +18458,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -17609,14 +18566,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -17719,14 +18676,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -17831,14 +18788,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -17943,14 +18900,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -18055,14 +19012,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -18167,14 +19124,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -18277,14 +19234,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -18385,21 +19342,21 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="updatelargeobjectcontents"></a>
 # **UpdateLargeObjectContents**
-> LargeObject UpdateLargeObjectContents (string largeObjectId, Object body = null)
+> LargeObject UpdateLargeObjectContents (string largeObjectId, FormDataContentDisposition file = null)
 
 Updates a LargeObject content
 
@@ -18430,12 +19387,12 @@ namespace Example
 
             var apiInstance = new DefaultApi(config);
             var largeObjectId = "largeObjectId_example";  // string | 
-            var body = null;  // Object |  (optional) 
+            var file = new FormDataContentDisposition(); // FormDataContentDisposition |  (optional) 
 
             try
             {
                 // Updates a LargeObject content
-                LargeObject result = apiInstance.UpdateLargeObjectContents(largeObjectId, body);
+                LargeObject result = apiInstance.UpdateLargeObjectContents(largeObjectId, file);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -18456,7 +19413,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Updates a LargeObject content
-    ApiResponse<LargeObject> response = apiInstance.UpdateLargeObjectContentsWithHttpInfo(largeObjectId, body);
+    ApiResponse<LargeObject> response = apiInstance.UpdateLargeObjectContentsWithHttpInfo(largeObjectId, file);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -18474,7 +19431,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **largeObjectId** | **string** |  |  |
-| **body** | **Object** |  | [optional]  |
+| **file** | [**FormDataContentDisposition**](FormDataContentDisposition.md) |  | [optional]  |
 
 ### Return type
 
@@ -18486,21 +19443,21 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -18603,14 +19560,124 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
+| **0** | default response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updatematch"></a>
+# **UpdateMatch**
+> MultiMatch UpdateMatch (string matchId, MultiMatch multiMatch = null)
+
+Updates a MultiMatch
+
+This method accepts an instance of MultiMatch and updates the DB entry for it that matches the matchId. Though it is generally recommended to update a MultiMatch via matchmaking code in an Element, it can be updated via REST for the purposes of testing or custom workflows.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Elements.Api;
+using Elements.Client;
+using Elements.Model;
+
+namespace Example
+{
+    public class UpdateMatchExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost:8080/api/rest";
+            // Configure API key authorization: auth_bearer
+            config.AddApiKey("Authorization", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Authorization", "Bearer");
+            // Configure API key authorization: session_secret
+            config.AddApiKey("Elements-SessionSecret", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("Elements-SessionSecret", "Bearer");
+
+            var apiInstance = new DefaultApi(config);
+            var matchId = "matchId_example";  // string | 
+            var multiMatch = new MultiMatch(); // MultiMatch |  (optional) 
+
+            try
+            {
+                // Updates a MultiMatch
+                MultiMatch result = apiInstance.UpdateMatch(matchId, multiMatch);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DefaultApi.UpdateMatch: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateMatchWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Updates a MultiMatch
+    ApiResponse<MultiMatch> response = apiInstance.UpdateMatchWithHttpInfo(matchId, multiMatch);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DefaultApi.UpdateMatchWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **matchId** | **string** |  |  |
+| **multiMatch** | [**MultiMatch**](MultiMatch.md) |  | [optional]  |
+
+### Return type
+
+[**MultiMatch**](MultiMatch.md)
+
+### Authorization
+
+[auth_bearer](../README.md#auth_bearer), [session_secret](../README.md#session_secret)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** |  |  -  |
+| **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -18715,14 +19782,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -18825,14 +19892,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -18935,14 +20002,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -19045,14 +20112,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -19157,14 +20224,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -19269,14 +20336,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -19381,14 +20448,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -19491,14 +20558,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -19599,14 +20666,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -19709,14 +20776,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -19819,14 +20886,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -19929,14 +20996,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -20039,14 +21106,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -20151,14 +21218,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -20261,14 +21328,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -20371,14 +21438,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -20481,14 +21548,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -20591,14 +21658,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -20701,14 +21768,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -20811,14 +21878,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -20923,14 +21990,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -21029,14 +22096,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -21135,14 +22202,14 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** |  |  -  |
-| **403** |  |  -  |
 | **409** |  |  -  |
-| **503** |  |  -  |
-| **400** |  |  -  |
-| **500** |  |  -  |
-| **401** |  |  -  |
 | **501** |  |  -  |
+| **400** |  |  -  |
+| **403** |  |  -  |
+| **401** |  |  -  |
+| **503** |  |  -  |
+| **500** |  |  -  |
+| **404** |  |  -  |
 | **0** | default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
