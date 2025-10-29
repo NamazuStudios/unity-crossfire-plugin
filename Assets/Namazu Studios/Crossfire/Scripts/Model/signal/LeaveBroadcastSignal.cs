@@ -1,39 +1,39 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Elements.Crossfire.Model
 {
-    public class HostBroadcastSignal : BroadcastSignal
-    {
 
+    public class LeaveBroadcastSignal : BroadcastSignal
+    {
         [JsonProperty]
         private string profileId;
 
         [JsonProperty]
-        private SignalLifecycle lifecycle;
+        private SignalLifecycle lifecycle = SignalLifecycle.MATCH;
 
-        public MessageType GetMessageType()
-        {
-            return MessageType.HOST;
-        }
+        [JsonProperty]
+        private MessageType messageType = MessageType.SIGNAL_LEAVE;
 
         public string GetProfileId()
         {
             return profileId;
         }
 
-        public void setProfileId(string profileId)
+        public void SetProfileId(string profileId)
         {
             this.profileId = profileId;
         }
+
 
         public SignalLifecycle GetLifecycle()
         {
             return lifecycle;
         }
 
-        public void setLifecycle(SignalLifecycle lifecycle)
+
+        public MessageType GetMessageType()
         {
-            this.lifecycle = lifecycle;
+            return messageType;
         }
 
     }

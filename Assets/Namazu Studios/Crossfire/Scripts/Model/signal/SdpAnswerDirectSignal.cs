@@ -20,12 +20,12 @@ namespace Elements.Crossfire.Model
         [JsonProperty]
         private SignalLifecycle lifecycle = SignalLifecycle.SESSION;
 
-        public MessageType getType()
+        public MessageType GetMessageType()
         {
             return type;
         }
 
-        public SignalLifecycle getLifecycle()
+        public SignalLifecycle GetLifecycle()
         {
             return lifecycle;
         }

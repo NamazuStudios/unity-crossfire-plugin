@@ -12,7 +12,7 @@ namespace Elements.Crossfire.Model
          *
          * @return the profile id
          */
-        string getProfileId();
+        string GetProfileId();
 
     }
 }

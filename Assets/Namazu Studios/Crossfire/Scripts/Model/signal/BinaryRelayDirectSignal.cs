@@ -18,7 +18,7 @@ namespace Elements.Crossfire.Model
         private SignalLifecycle lifecycle = SignalLifecycle.ONCE;
 
 
-        public MessageType getType()
+        public MessageType GetMessageType()
         {
             return MessageType.BINARY_RELAY;
         }
@@ -54,7 +54,7 @@ namespace Elements.Crossfire.Model
             this.payload = payload;
         }
 
-        public SignalLifecycle getLifecycle()
+        public SignalLifecycle GetLifecycle()
         {
             return lifecycle;
         }

@@ -8,12 +8,12 @@ namespace Elements.Crossfire.Model
         [JsonProperty]
         private string profileId;
 
-        public MessageType getType()
+        public MessageType GetMessageType()
         {
             return MessageType.CONNECT;
         }
 
-        public string getProfileId()
+        public string GetProfileId()
         {
             return profileId;
         }
@@ -23,7 +23,7 @@ namespace Elements.Crossfire.Model
             this.profileId = profileId;
         }
 
-        public SignalLifecycle getLifecycle()
+        public SignalLifecycle GetLifecycle()
         {
             return SignalLifecycle.MATCH;
         }

@@ -50,15 +50,15 @@ If you have any questions, come say hi!
 1. **Import Required Packages** via Unity Package Manager:
  
    ```
-   com.unity.netcode.gameobjects (version 2.4+)
+   com.unity.netcode.gameobjects
    ```
    
    ```
-   com.unity.webrtc (version 3+)
+   com.unity.webrtc
    ```
    
    ```
-   com.unity.nuget.newtonsoft-json (version 3+)
+   com.unity.nuget.newtonsoft-json
    ```
 2. **Plugin Dependencies**:
 [Websocket Sharp](https://github.com/sta/websocket-sharp) has been precompiled and added to the Plugins folder for you. 
@@ -72,6 +72,9 @@ If you have any questions, come say hi!
 ### 1. Basic Scene Setup
 
 Simply place the provided NetworkSessionManager prefab in your scene, or create a NetworkSessionManager component to a GameObject in your scene. Then, create a NetworkManager object or component and assign it to the NetworkManager field of the NetworkSessionManager. Then, make sure that the host is set correctly under the Session Config. It is not necessary to assign Match Id, Profile Id, and Session Token at this time, though you can for testing.
+
+> [!WARNING] 
+> The NetworkManager will automatically move to DontDestroyOnLoad, which may cause duplicates to be created if you leave the scene and come back. A good practice is to either check to see if an instance of NetworkManager has been created and then create one programatically (or via prefab), or only place it in a loading/project initialization scene that is never returned to.
 
 ### 2. Start a Session
 
@@ -123,7 +126,8 @@ The matchmaking configuration must be defined in Elements ahead of time. You can
 // This configuration must be defined in Elements ahead of time.
 sessionManager.FindMatch("2v2_competitive");
 
-// Or join a specific match
+// Or rejoin a specific match. Note that this is only allowed if 
+// you had previously joined the match and then left
 sessionManager.JoinMatch("match-id-12345");
 ```
 

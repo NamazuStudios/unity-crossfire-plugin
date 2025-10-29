@@ -20,12 +20,12 @@ namespace Elements.Crossfire.Model
         [JsonProperty]
         private MessageType type = MessageType.CANDIDATE;
 
-        public MessageType getType()
+        public MessageType GetMessageType()
         {
             return type;
         }
 
-        public SignalLifecycle getLifecycle()
+        public SignalLifecycle GetLifecycle()
         {
             return SignalLifecycle.SESSION;
         }

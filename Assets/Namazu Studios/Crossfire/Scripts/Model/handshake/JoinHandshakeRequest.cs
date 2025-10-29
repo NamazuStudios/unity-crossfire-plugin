@@ -6,7 +6,7 @@ namespace Elements.Crossfire.Model
     {
 
         [JsonProperty]
-        private string version;
+        private string version = HandshakeRequest.VERSION_1_0;
 
         [JsonProperty]
         private string profileId;
@@ -20,7 +20,7 @@ namespace Elements.Crossfire.Model
         [JsonProperty]
         private MessageType type = MessageType.JOIN;
 
-        public MessageType getType()
+        public MessageType GetMessageType()
         {
             return type;
         }

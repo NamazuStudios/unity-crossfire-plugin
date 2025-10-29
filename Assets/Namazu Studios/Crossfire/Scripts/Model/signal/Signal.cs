@@ -13,7 +13,7 @@ namespace Elements.Crossfire.Model
          *
          * @return the lifecycle of the signal
          */
-        SignalLifecycle getLifecycle();
+        SignalLifecycle GetLifecycle();
 
     }
 

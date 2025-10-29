@@ -37,7 +37,7 @@ namespace Elements.Crossfire.Model
             this.version = version;
         }
 
-        public MessageType getType()
+        public MessageType GetMessageType()
         {
             return type;
         }

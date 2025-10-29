@@ -17,12 +17,12 @@ namespace Elements.Crossfire.Model
         [JsonProperty]
         private MessageType type = MessageType.SDP_OFFER;
 
-        public MessageType getType()
+        public MessageType GetMessageType()
         {
             return type;
         }
 
-        public SignalLifecycle getLifecycle()
+        public SignalLifecycle GetLifecycle()
         {
             return SignalLifecycle.SESSION;
         }

@@ -40,7 +40,7 @@ namespace Elements.Crossfire.Test
 
         private void Start()
         {
-            ElementsClient.Initialize(elementsRootUrl, false);
+            ElementsClient.InitializeDefault(elementsRootUrl, false);
 
             NetworkManager.Singleton.OnServerStarted += () =>
             {
@@ -90,7 +90,7 @@ namespace Elements.Crossfire.Test
 
         private async Task<SessionCreation> SignIn(string userName)
         {
-            ElementsClient.LogOut();
+            ElementsClient.Default.LogOut();
 
             const string password = "test";
             // Be sure that the Application is created in Elements ahead of time!
@@ -99,7 +99,7 @@ namespace Elements.Crossfire.Test
             try
             {
                 //Creates new account if necessary
-                await ElementsClient.Api.SignUpUserWithHttpInfoAsync(new UserCreateRequest(
+                await ElementsClient.Default.Api.SignUpUserWithHttpInfoAsync(new UserCreateRequest(
                     name: userName,
                     password: password,
                     level: UserCreateRequest.LevelEnum.USER,
@@ -121,7 +121,7 @@ namespace Elements.Crossfire.Test
                     Debug.LogError(e);
             }
 
-            var signInResponse = await ElementsClient.Api.CreateUsernamePasswordSessionWithHttpInfoAsync(new UsernamePasswordSessionRequest
+            var signInResponse = await ElementsClient.Default.Api.CreateUsernamePasswordSessionWithHttpInfoAsync(new UsernamePasswordSessionRequest
             (
                 userId: userName,
                 password: password,
@@ -162,7 +162,7 @@ namespace Elements.Crossfire.Test
         {
             if(!playerProfiles.TryGetValue(player.profileId, out Profile profile))
             {
-                profile = await ElementsClient.Api.GetProfileAsync(player.profileId);
+                profile = await ElementsClient.Default.Api.GetProfileAsync(player.profileId);
             }
 
             ShowNotification($"{profile.DisplayName} joined the match");

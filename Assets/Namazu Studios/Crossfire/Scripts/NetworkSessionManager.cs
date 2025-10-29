@@ -43,7 +43,7 @@ namespace Elements.Crossfire
         private readonly HashSet<string> pendingPeers = new();
         private readonly Dictionary<string, PlayerInfo> players = new();
 
-        // Enhanced events with state information
+        // Events with state information
         public event Action<NetworkSessionState> OnSessionStateChanged;
         public event Action<string> OnMatchJoined;
         public event Action<string, bool> OnHostChanged;
@@ -54,37 +54,9 @@ namespace Elements.Crossfire
         public event Action<string> OnConnectionError;
 
         // Initialization state
-        private bool isInitialized = false;
+        private bool isInitialized;
 
         private Logger logger = LoggerFactory.GetLogger("NetworkSessionManager");
-
-        private void Awake()
-        {
-            // Singleton pattern with scene persistence
-            if (Instance == null)
-            {
-                Instance = this;
-                Logger.LoggingEnabled = loggingEnabled;
-
-                // DontDestroyOnLoad only works on root game objects, not children
-                if (persistAcrossScenes && transform.parent == null)
-                {
-                    DontDestroyOnLoad(gameObject);
-                    logger.Log("Marked as persistent across scenes");
-                }
-
-                // Initialize if the networkManager is discoverable
-                if (networkManager != null || FindAnyObjectByType<NetworkManager>() != null)
-                {
-                    InitializeComponents();
-                }
-            }
-            else if (Instance != this)
-            {
-                logger.LogWarning("Another instance already exists. Destroying duplicate.");
-                Destroy(gameObject);
-            }
-        }
 
 #region PUBLIC API
 
@@ -118,6 +90,11 @@ namespace Elements.Crossfire
             if (!isInitialized)
             {
                 InitializeComponents();
+            }
+            else if(!TransportAdapter.Initialized)
+            {
+                // Reinitialize transport
+                TransportAdapter.Initialize(networkManager);
             }
 
             // Connect to signaling server
@@ -266,10 +243,84 @@ namespace Elements.Crossfire
             // Reset match state but keep session active
             ResetMatchState();
             SetSessionState(NetworkSessionState.Connected);
+
+            // Let the server know that we are leaving so that it can signal the other players
+            var request = new LeaveControlMessage();
+            request.SetProfileId(sessionConfig.profileId);
+
+            SignalingClient.SendWSMessage(request.ToJsonString<LeaveControlMessage>());
         }
 
-#endregion
+        /// <summary>
+        /// (Host only) Attempts to close the match, preventing any new players from joining.
+        /// </summary>
+        public void CloseMatch()
+        {
+            if (!isHost) return;
+
+            var request = new CloseControlMessage();
+            request.SetProfileId(sessionConfig.profileId);
+
+            SignalingClient.SendWSMessage(request.ToJsonString<CloseControlMessage>());
+        }
+
+        /// <summary>
+        /// (Host only) Attempts to open the match, allowing new players to join.
+        /// Newly created matches are OPEN by default.
+        /// </summary>
+        public void OpenMatch()
+        {
+            if (!isHost) return;
+
+            var request = new OpenControlMessage();
+            request.SetProfileId(sessionConfig.profileId);
+
+            SignalingClient.SendWSMessage(request.ToJsonString<OpenControlMessage>());
+        }
+
+        /// <summary>
+        /// (Host only) Attempts to end the match, indicating that the server can start the cleanup process.        
+        /// </summary>
+        public void EndMatch()
+        {
+            if (!isHost) return;
+
+            var request = new EndControlMessage();
+            request.SetProfileId(sessionConfig.profileId);
+
+            SignalingClient.SendWSMessage(request.ToJsonString<EndControlMessage>());
+        }
+
+        #endregion
 #region INITIALIZATION
+
+        private void Awake()
+        {
+            // Singleton pattern with scene persistence
+            if (Instance == null)
+            {
+                Instance = this;
+                Logger.LoggingEnabled = loggingEnabled;
+
+                // DontDestroyOnLoad only works on root game objects, not children
+                if (persistAcrossScenes && transform.parent == null)
+                {
+                    DontDestroyOnLoad(gameObject);
+                    logger.Log("Marked as persistent across scenes");
+                }
+
+                // Initialize if the networkManager is discoverable
+                if (networkManager != null || FindAnyObjectByType<NetworkManager>() != null)
+                {
+                    InitializeComponents();
+                }
+            }
+            else if (Instance != this)
+            {
+                logger.Log("Another instance already exists. Destroying duplicate.");
+                Destroy(gameObject);
+            }
+        }
 
         private void InitializeComponents()
         {
@@ -319,7 +370,7 @@ namespace Elements.Crossfire
 
         private void InitializeTransportAdapter()
         {
-            GameObject transportGO = null;
+            GameObject transportGameObject;
 
             // Check if transport adapter already exists
             var existingAdapter = GetComponent<INetworkTransportAdapter>();
@@ -333,16 +384,16 @@ namespace Elements.Crossfire
             {
                 if (webRtcTransportPrefab != null)
                 {
-                    transportGO = Instantiate(webRtcTransportPrefab, transform);
+                    transportGameObject = Instantiate(webRtcTransportPrefab, transform);
                 }
                 else
                 {
-                    transportGO = new GameObject("WebRtcTransportAdapter");
-                    transportGO.transform.SetParent(transform);
-                    transportGO.AddComponent<WebRtcTransportAdapter>();
+                    transportGameObject = new GameObject("WebRtcTransportAdapter");
+                    transportGameObject.transform.SetParent(transform);
+                    transportGameObject.AddComponent<WebRtcTransportAdapter>();
                 }
 
-                TransportAdapter = transportGO.GetComponent<WebRtcTransportAdapter>();
+                TransportAdapter = transportGameObject.GetComponent<WebRtcTransportAdapter>();
 
                 // Configure WebRTC adapter
                 var webRtcAdapter = TransportAdapter as WebRtcTransportAdapter;
@@ -354,16 +405,16 @@ namespace Elements.Crossfire
                 // WebSocket transport
                 if (webSocketTransportPrefab != null)
                 {
-                    transportGO = Instantiate(webSocketTransportPrefab, transform);
+                    transportGameObject = Instantiate(webSocketTransportPrefab, transform);
                 }
                 else
                 {
-                    transportGO = new GameObject("WebSocketTransportAdapter");
-                    transportGO.transform.SetParent(transform);
-                    transportGO.AddComponent<WebSocketTransportAdapter>();
+                    transportGameObject = new GameObject("WebSocketTransportAdapter");
+                    transportGameObject.transform.SetParent(transform);
+                    transportGameObject.AddComponent<WebSocketTransportAdapter>();
                 }
 
-                TransportAdapter = transportGO.GetComponent<INetworkTransportAdapter>();
+                TransportAdapter = transportGameObject.GetComponent<INetworkTransportAdapter>();
             }
 
             if (TransportAdapter == null)
@@ -381,13 +432,12 @@ namespace Elements.Crossfire
             TransportAdapter.OnPeerDisconnected += HandlePeerDisconnected;
 
             // Subscribe to enhanced transport events if available
-            if (TransportAdapter is WebRtcTransportAdapter adapter)
-            {
-                adapter.OnConnectionQualityChanged += HandleConnectionQualityChanged;
-                adapter.OnConnectionStateChanged += HandleConnectionStateChanged;
-                adapter.OnConnectionError += HandleTransportConnectionError;
-                adapter.OnNetworkStatsUpdated += HandleNetworkStatsUpdated;
-            }
+            if (TransportAdapter is not WebRtcTransportAdapter adapter) return;
+            
+            adapter.OnConnectionQualityChanged += HandleConnectionQualityChanged;
+            adapter.OnConnectionStateChanged += HandleConnectionStateChanged;
+            adapter.OnConnectionError += HandleTransportConnectionError;
+            adapter.OnNetworkStatsUpdated += HandleNetworkStatsUpdated;
         }
 
 #endregion
@@ -505,12 +555,12 @@ namespace Elements.Crossfire
             hostProfileId = message.profileId;
             bool wasTransferred = !string.IsNullOrEmpty(oldHostId) && oldHostId != hostProfileId;
 
-            isHost = (hostProfileId == sessionConfig.profileId);
+            isHost = hostProfileId == sessionConfig.profileId;
 
             // Update host in player list
             foreach (var player in players.Values)
             {
-                player.isHost = (player.profileId == hostProfileId);
+                player.isHost = player.profileId == hostProfileId;
             }
 
             OnHostChanged?.Invoke(hostProfileId, wasTransferred);

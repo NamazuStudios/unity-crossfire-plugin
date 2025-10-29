@@ -11,7 +11,7 @@ namespace Elements.Crossfire.Model
         [JsonProperty]
         private string matchId;
 
-        public MessageType getType()
+        public MessageType GetMessageType()
         {
             return MessageType.MATCHED;
         }

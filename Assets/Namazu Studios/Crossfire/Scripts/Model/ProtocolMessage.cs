@@ -10,10 +10,7 @@ namespace Elements.Crossfire.Model
          *
          * @return the type
          */
-        MessageType getType();
-
-
-
+        MessageType GetMessageType();
 
     }
 
@@ -78,7 +75,37 @@ namespace Elements.Crossfire.Model
         /**
          * Represents a signal that carries a message to be sent to the host.
          */
-        ERROR
+        ERROR,
+
+        /**
+        * Requests that the client leave the match.
+        */
+        LEAVE,
+
+        /**
+         * Requests that the client open the match for new participants.
+         */
+        OPEN,
+
+        /**
+         * Requests that the client close the match for new participants.
+         */
+        CLOSE,
+
+        /**
+         * Requests that the client leave the match and close the match for new participants.
+         */
+        END,
+
+        /**
+          * Specifies when a participant has joined the match.
+          */
+        SIGNAL_JOIN,
+
+        /**
+         * Specifies when a participant has left the match.
+         */
+        SIGNAL_LEAVE,
     }
 
     /**
