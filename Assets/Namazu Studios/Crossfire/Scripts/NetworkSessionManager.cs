@@ -23,7 +23,7 @@ namespace Elements.Crossfire
         [SerializeField] private NetworkSessionConfig sessionConfig;
         [SerializeField] private bool useWebRTC = true;
         [SerializeField] private bool persistAcrossScenes = true;
-        [SerializeField] private bool loggingEnabled = false;
+        [SerializeField] private LoggerLevel loggerLevel = LoggerLevel.Debug;
 
         // Session state tracking
         public NetworkSessionState State { get; private set; } = NetworkSessionState.Disconnected;
@@ -300,7 +300,7 @@ namespace Elements.Crossfire
             if (Instance == null)
             {
                 Instance = this;
-                Logger.LoggingEnabled = loggingEnabled;
+                Logger.LogLevel = loggerLevel;
 
                 // DontDestroyOnLoad only works on root game objects, not children
                 if (persistAcrossScenes && transform.parent == null)
